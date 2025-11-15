@@ -414,11 +414,12 @@ export function flattenScales(path, image) {
     download: flattenToAppURL(removeObjectIdFromURL(basePath, image.download)),
   };
 
-  Object.keys(imageInfo.scales).forEach((key) => {
-    imageInfo.scales[key].download = flattenToAppURL(
-      removeObjectIdFromURL(basePath, image.scales[key].download),
-    );
-  });
-
+  if (imageInfo.scales && Object.keys(imageInfo.scales).length > 0) {
+    Object.keys(imageInfo.scales).forEach((key) => {
+      imageInfo.scales[key].download = flattenToAppURL(
+        removeObjectIdFromURL(basePath, image.scales[key].download),
+      );
+    });
+  }
   return imageInfo;
 }
